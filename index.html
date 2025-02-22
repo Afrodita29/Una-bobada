@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser el amor de mi vida?</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/index.umd.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+</head>
+<body>
+
+    <!-- Pantalla de inicio -->
+    <div id="pantalla-inicio">
+        <h1 class="animate__animated animate__bounce">¿Quieres ser el amor de mi vida? </h1>
+        <button id="btn-si">Sí</button>
+        <button id="btn-no">No</button>
+    </div>
+
+    <!-- Pantalla de confirmación (si dice "No") -->
+    <div id="pantalla-confirmacion" class="oculto">
+        <h2 class="animate__animated animate__bounce">¿Estás segura? Porque ya no tienes más opción que Aceptar 😏</h2>
+        <button id="btn-final">Aceptar destino</button>
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="contenido" class="oculto">
+        <div id="galeria">
+            <!-- Se llenará con imágenes mediante CSS -->
+        </div>
+    </div>
+
+<!-- 🎶 Reproductor de música -->
+<audio id="musica" loop>
+    <source src="cancion/3AM - Por Ti (Video Oficial) - 3AM.mp3" type="audio/mpeg">
+    Tu navegador no soporta el audio.
+</audio>
+<buttonclass="animate__animated animate__bounce" id="playPauseBtn">▶️ Reproducir</button>
+<input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
