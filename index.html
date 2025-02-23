@@ -35,13 +35,12 @@
 </div>
 
 
-<!-- 🎶 Reproductor de música -->
-<audio id="musica" loop>
-<source src="cancion/3AM - Por Ti (Video Oficial) - 3AM.mp3" type="audio/mpeg">
-    Tu navegador no soporta el audio.
-</audio>
-<buttonclass="animate__animated animate__bounce" id="playPauseBtn">▶️ Reproducir</button>
-<input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+<!-- 🎶 Reproductor de música con botones modernos -->
+<div id="audio-controls">
+    <button id="playPauseBtn">⏯️</button>
+    <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+    <span id="volumeIcon">🔊</span>
+</div>
 
     <script src="script.js"></script>
     
