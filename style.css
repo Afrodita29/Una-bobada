@@ -51,6 +51,25 @@ button {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
+/* 💌 Estilo para el mensaje inicial */
+#mensaje-inicial {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    animation: fadeOut 3s ease-in-out 2s forwards; /* Se desvanece después de 2s */
+}
+
+/* 🎭 Animación para ocultar el mensaje */
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; display: none; }
+}
+
 /* Galería de imágenes estilo Polaroid */
 #galeria {
     display: flex;
