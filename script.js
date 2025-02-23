@@ -106,16 +106,21 @@ function abrirImagen(src) {
 }
 
 
-// 🎵 Control de música con botones modernos
+// 🎵 Control de música corregido
 window.addEventListener("DOMContentLoaded", function() {
     const musica = document.getElementById('musica');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const volumeControl = document.getElementById('volumeControl');
     const volumeIcon = document.getElementById('volumeIcon');
 
+    // 🔹 Verifica que el archivo de música se cargue correctamente
+    musica.addEventListener('error', function() {
+        console.error("❌ ERROR: No se pudo cargar la canción. Verifica la ruta del archivo.");
+    });
+
     playPauseBtn.addEventListener('click', () => {
         if (musica.paused) {
-            musica.play().catch(error => console.error("🎵 Error:", error));
+            musica.play().catch(error => console.error("🎵 Error al reproducir la música:", error));
             playPauseBtn.innerHTML = '⏸️';
         } else {
             musica.pause();
