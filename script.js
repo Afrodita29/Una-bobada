@@ -106,29 +106,33 @@ function abrirImagen(src) {
 }
 
 
-// 🎵 Control de música
+// 🎵 Control de música con botones modernos
 window.addEventListener("DOMContentLoaded", function() {
     const musica = document.getElementById('musica');
     const playPauseBtn = document.getElementById('playPauseBtn');
     const volumeControl = document.getElementById('volumeControl');
-
-    if (!musica || !playPauseBtn || !volumeControl) {
-        console.error("❌ ERROR: Elementos del reproductor no encontrados");
-        return;
-    }
+    const volumeIcon = document.getElementById('volumeIcon');
 
     playPauseBtn.addEventListener('click', () => {
         if (musica.paused) {
-            musica.play().catch(error => console.error("🎵 Error al reproducir la música:", error));
-            playPauseBtn.innerHTML = '⏸️ Pausar';
+            musica.play().catch(error => console.error("🎵 Error:", error));
+            playPauseBtn.innerHTML = '⏸️';
         } else {
             musica.pause();
-            playPauseBtn.innerHTML = '▶️ Reproducir';
+            playPauseBtn.innerHTML = '▶️';
         }
     });
 
     volumeControl.addEventListener('input', (event) => {
         musica.volume = event.target.value;
+
+        if (musica.volume === 0) {
+            volumeIcon.innerHTML = '🔇';  // Icono de silencio
+        } else if (musica.volume < 0.5) {
+            volumeIcon.innerHTML = '🔉';  // Icono de volumen bajo
+        } else {
+            volumeIcon.innerHTML = '🔊';  // Icono de volumen alto
+        }
     });
 });
 
