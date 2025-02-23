@@ -34,13 +34,26 @@ window.onload = function() {
     document.getElementById('pantalla-inicio').classList.remove('oculto');
 };
 
-// 📸 Cargar imágenes en la galería
-function cargarGaleria() {
+// 📸 Cargar imágenes con retardo
+function mostrarGaleria() {
+    const mensaje = document.getElementById('mensaje-inicial');
     const galeria = document.getElementById('galeria');
-    if (!galeria) {
-        console.error("❌ ERROR: No se encontró el contenedor #galeria");
-        return;
-    }
+
+    // ⏳ Oculta el mensaje y muestra la galería después de 3 segundos
+    setTimeout(() => {
+        mensaje.classList.add('oculto');  // Oculta el mensaje
+        galeria.classList.remove('oculto');  // Muestra la galería
+        cargarGaleria();
+    }, 3000);
+}
+
+// 🏁 Mostrar el contenido y activar la galería con retardo
+document.getElementById('btn-si').addEventListener('click', function() {
+    document.getElementById('pantalla-inicio').classList.add('oculto');
+    document.getElementById('contenido').classList.remove('oculto');
+    lanzarFuegosArtificiales();
+    mostrarGaleria();  // Llamamos la función para manejar el retardo
+});
 
     galeria.innerHTML = ''; // Limpiar contenido previo
     console.log("Cargando imágenes...");
