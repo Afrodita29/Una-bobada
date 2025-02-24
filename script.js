@@ -28,7 +28,7 @@ function mostrarPantallaContenido() {
     document.getElementById('contenido').classList.remove('oculto');
     
     lanzarFuegosArtificiales();
-    mostrarGaleria(); // La galería se muestra después de 3 segundos
+    mostrarGaleria();
 }
 
 // 📸 Mostrar mensaje y luego cargar la galería
@@ -37,8 +37,8 @@ function mostrarGaleria() {
     const galeria = document.getElementById('galeria');
 
     setTimeout(() => {
-        mensaje.classList.add('oculto');  // Oculta el mensaje
-        galeria.classList.remove('oculto');  // Muestra la galería
+        mensaje.classList.add('oculto');  
+        galeria.classList.remove('oculto');  
         cargarGaleria();
     }, 3000);
 }
@@ -46,14 +46,14 @@ function mostrarGaleria() {
 // 📸 Cargar imágenes en la galería
 function cargarGaleria() {
     const galeria = document.getElementById('galeria');
-    galeria.innerHTML = ''; // Limpiar contenido previo
+    galeria.innerHTML = ''; 
     console.log("Cargando imágenes...");
 
     for (let i = 1; i <= 30; i++) {
         const img = document.createElement('img');
         img.src = `imagenes/foto${i}.jpg`;
         img.classList.add('imagen-galeria');
-        img.loading = 'lazy'; // 🚀 Optimización Lazy Loading
+        img.loading = 'lazy';
         img.onclick = () => abrirImagen(img.src);
 
         img.onload = () => console.log(`✅ Imagen ${i} cargada`);
@@ -158,7 +158,7 @@ function lanzarFuegosArtificiales() {
         setTimeout(() => {
             window.fireworks.stop();
             console.log("🛑 Fuegos artificiales detenidos.");
-        }, 5000); // Se detiene en 5s
+        }, 5000);
     } else {
         console.error("❌ Fireworks.js no está disponible aún.");
     }
