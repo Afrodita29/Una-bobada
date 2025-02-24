@@ -158,7 +158,7 @@ function lanzarFuegosArtificiales() {
         setTimeout(() => {
             window.fireworks.stop();
             console.log("🛑 Fuegos artificiales detenidos.");
-        }, 5000);
+        },10000);
     } else {
         console.error("❌ Fireworks.js no está disponible aún.");
     }
