@@ -163,3 +163,50 @@ function lanzarFuegosArtificiales() {
         console.error("❌ Fireworks.js no está disponible aún.");
     }
 }
+// 💖 Función para crear corazones flotantes
+function mostrarCorazones() {
+    for (let i = 0; i < 10; i++) {
+        let corazon = document.createElement("div");
+        corazon.innerHTML = "🥰❤️🥰";
+        corazon.classList.add("corazon");
+        corazon.style.left = Math.random() * 100 + "vw";
+        corazon.style.animationDuration = Math.random() * 2 + 3 + "s";
+        corazon.style.setProperty("--tamano", Math.random());
+
+        document.body.appendChild(corazon);
+
+        setTimeout(() => {
+            corazon.remove();
+        }, 8000);
+    }
+}
+
+// 🎆 Modificar función abrirImagen para incluir los corazones
+function abrirImagen(src) {
+    let modal = document.getElementById("modal-imagen");
+
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.id = "modal-imagen";
+        modal.innerHTML = `
+            <div class="modal-contenido">
+                <span class="cerrar">&times;</span>
+                <img class="imagen-mediana" src="${src}">
+            </div>
+        `;
+        document.body.appendChild(modal);
+    } else {
+        modal.querySelector(".imagen-mediana").src = src;
+        modal.style.display = "flex";
+    }
+
+    modal.querySelector(".cerrar").addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+    });
+
+    mostrarCorazones();
+}
