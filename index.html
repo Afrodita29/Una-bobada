@@ -7,45 +7,42 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/index.umd.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
 </head>
 <body>
 
     <!-- Pantalla de inicio -->
     <div id="pantalla-inicio">
         <h1 class="animate__animated animate__bounce">¿Quieres ser el amor de mi vida? </h1>
-        <button id="btn-si">Sí</button>
-        <button id="btn-no">No</button>
+        <button id="btn-si" class="boton">Sí</button>
+        <button id="btn-no" class="boton">No</button>
     </div>
 
     <!-- Pantalla de confirmación (si dice "No") -->
     <div id="pantalla-confirmacion" class="oculto">
         <h2 class="animate__animated animate__bounce">¿Estás segura? Porque ya no tienes más opción que Aceptar 😏</h2>
-        <button id="btn-final">Aceptar destino</button>
+        <button id="btn-final" class="boton">Aceptar destino</button>
     </div>
 
     <!-- Contenido principal -->
-<div id="contenido" class="oculto">
-    <!-- 💌 Mensaje especial antes de cargar las imágenes -->
-    <div id="mensaje-inicial">
-        <h2 class="animate__animated animate__fadeIn">TE QUIERO Y GRACIAS POR TODO ❤️ FELICES 6 MESES 🎉</h2>
+    <div id="contenido" class="oculto">
+        <!-- 💌 Mensaje especial antes de cargar las imágenes -->
+        <div id="mensaje-inicial">
+            <h2 class="animate__animated animate__fadeIn">TE QUIERO Y GRACIAS POR TODO ❤️ FELICES 6 MESES 🎉</h2>
+        </div>
+        
+        <div id="galeria" class="oculto"></div> <!-- La galería empieza oculta -->
     </div>
-    
-    <div id="galeria" class="oculto"></div> <!-- La galería empieza oculta -->
-</div>
 
-
-<!-- 🎶 Reproductor de música -->
-<div id="audio-controls">
-    <audio id="musica" loop>
-        <source src="cancion/3AM - Por Ti (Video Oficial) - 3AM.mp3" type="audio/mpeg">
-        Tu navegador no soporta el audio.
-    </audio>
-    <button id="playPauseBtn">▶️</button>
-    <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
-    <span id="volumeIcon">🔊</span>
-</div>
-
+    <!-- 🎶 Reproductor de música con diseño mejorado -->
+    <div id="audio-controls">
+        <audio id="musica" loop>
+            <source src="cancion/3AM - Por Ti (Video Oficial) - 3AM.mp3" type="audio/mpeg">
+            Tu navegador no soporta el audio.
+        </audio>
+        <button id="playPauseBtn" class="boton-musica">▶️</button>
+        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+        <span id="volumeIcon">🔊</span>
+    </div>
 
     <script src="script.js"></script>
     
