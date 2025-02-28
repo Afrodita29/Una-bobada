@@ -150,13 +150,16 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("✅ Botones encontrados");
 
         btnSi.addEventListener("click", function() {
+            console.log("✔ Clic en Sí");
             alert("¡Sabía que dirías que sí! 💖");
+            window.location.href = "galeria.html"; // Redirigir a la galería
         });
 
         btnNo.addEventListener("click", function() {
-            alert("No es una opción 😏");
+            console.log("✔ Clic en No");
+            window.location.href = "confirmacion.html"; // Redirigir a la página de confirmación
         });
     } else {
-        console.log("❌ No se encontraron los botones");
+        console.log("❌ No se encontraron los botones en index.html");
     }
 });
