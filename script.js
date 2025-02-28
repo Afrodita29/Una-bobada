@@ -163,3 +163,5 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("❌ No se encontraron los botones en index.html");
     }
 });
+localStorage.clear();
+sessionStorage.clear();
