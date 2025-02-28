@@ -21,87 +21,103 @@ h1, h2 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* 🎭 Ocultar elementos */
-.oculto {
-    display: none;
-}
-
-/* 🎛️ Botones generales */
-button {
-    font-size: 18px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin: 10px;
-    max-width: 200px;
-}
-
-/* 🎭 Estilos de botones */
-#btn-si {
-    background-color: #4d864d;
-    color: white;
-}
-
-#btn-no {
-    background-color: #ff0000;
-    color: white;
-}
-
-#btn-final {
-    background-color: #34063e;
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-/* 💌 Mensaje inicial antes de la galería */
-#mensaje-inicial {
+/* 🎭 Mensaje inicial */
+.mensaje {
     font-size: 1.2em;
     font-weight: bold;
     color: #FFD700;
     text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
-    padding: 1px;
+    padding: 10px;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 30px;
     margin-bottom: 20px;
     animation: fadeOut 3s ease-in-out 2s forwards;
+
 }
 
-/* 🎭 Animación para ocultar el mensaje */
+/* Animación de desaparición */
 @keyframes fadeOut {
     0% { opacity: 1; }
     100% { opacity: 0; display: none; }
 }
 
-/* 📸 Galería de imágenes */
+/* 🎭 Página de confirmación */
+#confirmacion {
+    font-size: 1.5em;
+    color: #f00;
+    text-align: center;
+    padding: 20px;
+}
+/* 🎭 Estilos para la galería */
 #galeria {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 51px;
-    max-width: 100%;
-    align-items: stretch;
-    align-content: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 90%;
+    padding: 20px;
+}
+
+/* 📸 Estilos para las imágenes con el efecto corazón */
+.imagen-con-efecto {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ❤️ Ajuste del efecto corazón */
+.canvas-corazon {
+    position: absolute;
+    width: 160px; /* Un poco más grande que la imagen */
+    height: 160px;
+    pointer-events: none; /* Para que no bloquee clics en la imagen */
 }
 
 /* 📸 Estilos mejorados para la galería */
-#galeria img {
-    width: 100px;
-    height: auto;
+.imagen-galeria {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 25px;
+    border-radius: 10px;
     border: 3px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
-    filter: grayscale(10%) contrast(1.1);
-    animation: fadeInScale 1s ease-in-out;
 }
-/* ✨ Efecto al pasar el mouse */
-#galeria img:hover {
+
+.imagen-galeria:hover {
     transform: scale(1.1) rotate(2deg);
     box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.5);
     filter: brightness(1.2) contrast(1.2);
+}
+
+/* 🎆 Modal para ver imágenes en grande */
+#modal-imagen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-contenido {
+    position: relative;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.imagen-mediana {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 10px;
 }
 
 /* ❤️ Animación del corazón */
@@ -114,6 +130,7 @@ button {
     box-shadow: -10px 10px 90px #f20044;
     border: 2px solid white; 
     animation: heart-beat 0.6s linear infinite;
+    margin: 10px auto;
 }
 
 .heart::before,
@@ -142,4 +159,23 @@ button {
     0% { transform: rotate(-45deg) scale(1.07); }
     80% { transform: rotate(-45deg) scale(1.0); }
     100% { transform: rotate(-45deg) scale(0.8); }
+}
+
+
+
+/* Botón de navegación */
+.boton {
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin: 10px;
+    background-color: #4d864d;
+    color: white;
+}
+
+.boton:hover {
+    background-color: #3a633a;
 }

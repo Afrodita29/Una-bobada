@@ -1,66 +1,73 @@
 window.onload = function() {
     console.log("✅ Documento cargado correctamente");
-
-    // 💖 Botón "Sí" activa los fuegos artificiales y muestra la galería
-    document.getElementById('btn-si').addEventListener('click', function() {
-        mostrarPantallaContenido();
-    });
-
-    // 💔 Botón "No" activa la pantalla de confirmación
-    document.getElementById('btn-no').addEventListener('click', function() {
-        document.getElementById('pantalla-inicio').classList.add('oculto');
-        document.getElementById('pantalla-confirmacion').classList.remove('oculto');
-    });
-
-    // 🔁 Botón de confirmación en la pantalla "No"
-    document.getElementById('btn-final').addEventListener('click', function() {
-        mostrarPantallaContenido();
-    });
-
-    // 🏁 Mostrar pantalla de inicio al cargar la página
-    document.getElementById('pantalla-inicio').classList.remove('oculto');
+    if (document.getElementById('galeria')) {
+        iniciarMusica();
+    } else {
+        mostrarPantallaInicio();
+    }
 };
 
-// 📸 Función para mostrar la pantalla de contenido con retardo
-function mostrarPantallaContenido() {
-    document.getElementById('pantalla-inicio').classList.add('oculto');
-    document.getElementById('pantalla-confirmacion').classList.add('oculto');
-    document.getElementById('contenido').classList.remove('oculto');
-    
-    lanzarFuegosArtificiales();
-    mostrarGaleria();
+function mostrarPantallaInicio() {
+    document.getElementById('pantalla-inicio').classList.remove('oculto');
 }
 
-// 📸 Mostrar mensaje y luego cargar la galería
-function mostrarGaleria() {
-    const mensaje = document.getElementById('mensaje-inicial');
-    const galeria = document.getElementById('galeria');
+// 📸 Mostrar la galería después del mensaje inicial
+document.addEventListener("DOMContentLoaded", function() {
+    const mensaje = document.getElementById("mensaje-inicial");
+    const galeria = document.getElementById("galeria");
 
-    setTimeout(() => {
-        mensaje.classList.add('oculto');  
-        galeria.classList.remove('oculto');  
-        cargarGaleria();
-    }, 3000);
+    if (mensaje && galeria) {
+        setTimeout(() => {
+            mensaje.style.display = "none";
+            galeria.classList.remove("oculto");
+            cargarGaleria();
+        }, 3000);
+    }
+
+    // Dibujar corazón en el mensaje inicial
+    const canvasMensaje = document.getElementById("canvas-corazon-mensaje");
+    if (canvasMensaje) {
+        dibujarCorazonMensaje(canvasMensaje);
+    }
+});
+
+// 🎶 Iniciar música en la galería
+function iniciarMusica() {
+    const audio = document.getElementById('musica');
+    if (audio) {
+        audio.play();
+    }
 }
 
-// 📸 Cargar imágenes en la galería
+// 📸 Cargar imágenes en la galería con el efecto corazón
 function cargarGaleria() {
     const galeria = document.getElementById('galeria');
+    if (!galeria) return;
     galeria.innerHTML = ''; 
-    console.log("Cargando imágenes...");
 
     for (let i = 1; i <= 30; i++) {
+        const contenedor = document.createElement('div');
+        contenedor.classList.add('imagen-con-efecto');
+
+        const canvas = document.createElement('canvas');
+        canvas.classList.add('canvas-corazon');
+
         const img = document.createElement('img');
         img.src = `imagenes/foto${i}.jpg`;
         img.classList.add('imagen-galeria');
         img.loading = 'lazy';
-        img.onclick = () => abrirImagen(img.src);
 
-        img.onload = () => console.log(`✅ Imagen ${i} cargada`);
-        img.onerror = () => console.error(`❌ ERROR al cargar imagen ${i}`);
+        // 📸 Abrir imagen en modal (Correcto)
+img.onclick = function() {
+    abrirImagen(this.src);
+};
 
-        galeria.appendChild(img);
+
+        contenedor.appendChild(canvas);
+        contenedor.appendChild(img);
+        galeria.appendChild(contenedor);
     }
+    iniciarEfectoCorazon();
 }
 
 // 🎆 Función para abrir imagen en modal
@@ -91,122 +98,44 @@ function abrirImagen(src) {
     });
 }
 
-// 🎵 Control de música corregido
-window.addEventListener("DOMContentLoaded", function() {
-    const musica = document.getElementById('musica');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const volumeControl = document.getElementById('volumeControl');
+// ❤️ Dibujar corazones alrededor de imágenes
+function iniciarEfectoCorazon() {
+    document.querySelectorAll(".canvas-corazon").forEach((canvas) => {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        const ctx = canvas.getContext("2d");
 
-    // 🔹 Verifica que el archivo de música se cargue correctamente
-    musica.addEventListener('error', function() {
-        console.error("❌ ERROR: No se pudo cargar la canción. Verifica la ruta del archivo.");
-    });
-
-    playPauseBtn.addEventListener('click', () => {
-        if (musica.paused) {
-            musica.play().catch(error => console.error("🎵 Error al reproducir la música:", error));
-            playPauseBtn.innerHTML = '⏸️';
-        } else {
-            musica.pause();
-            playPauseBtn.innerHTML = '▶️';
+        function dibujarCorazon() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "rgba(255, 0, 68, 0.8)";
+            ctx.shadowColor = "#f20044";
+            ctx.shadowBlur = 20;
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, canvas.height / 3);
+            ctx.bezierCurveTo(canvas.width * 0.2, 0, 0, canvas.height * 0.6, canvas.width / 2, canvas.height);
+            ctx.bezierCurveTo(canvas.width, canvas.height * 0.6, canvas.width * 0.8, 0, canvas.width / 2, canvas.height / 3);
+            ctx.fill();
         }
+        setInterval(dibujarCorazon, 500);
     });
-
-    volumeControl.addEventListener('input', (event) => {
-        musica.volume = event.target.value;
-    });
-});
-
-// 🎆 Fuegos artificiales con Fireworks.js
-document.addEventListener("DOMContentLoaded", function () {
-    const script = document.createElement('script');
-    script.src = "https://cdn.jsdelivr.net/npm/fireworks-js@2/dist/index.umd.js";
-    script.onload = function () {
-        console.log("✅ Fireworks.js cargado correctamente");
-
-        const contenedor = document.createElement("div");
-        contenedor.id = "contenedor-fuegos";
-        contenedor.style.position = "fixed";
-        contenedor.style.top = "0";
-        contenedor.style.left = "0";
-        contenedor.style.width = "100vw";
-        contenedor.style.height = "100vh";
-        contenedor.style.pointerEvents = "none";
-        document.body.appendChild(contenedor);
-
-        window.fireworks = new Fireworks.default(contenedor, {
-            speed: 2,
-            acceleration: 1.80,
-            particles: 250,
-            explosion: 100,
-            intensity: 10,
-            friction: 0.96,
-            gravity: 0.05
-        });
-
-        console.log("🎇 Fireworks.js inicializado");
-    };
-
-    document.head.appendChild(script);
-});
-
-// 🛑 Función para iniciar los fuegos artificiales
-function lanzarFuegosArtificiales() {
-    if (window.fireworks) {
-        console.log("🎆 Activando fuegos artificiales...");
-        window.fireworks.start();
-        setTimeout(() => {
-            window.fireworks.stop();
-            console.log("🛑 Fuegos artificiales detenidos.");
-        },10000);
-    } else {
-        console.error("❌ Fireworks.js no está disponible aún.");
-    }
-}
-// 💖 Función para crear corazones flotantes
-function mostrarCorazones() {
-    for (let i = 0; i < 10; i++) {
-        let corazon = document.createElement("div");
-        corazon.innerHTML = "🥰❤️🥰";
-        corazon.classList.add("corazon");
-        corazon.style.left = Math.random() * 100 + "vw";
-        corazon.style.animationDuration = Math.random() * 2 + 3 + "s";
-        corazon.style.setProperty("--tamano", Math.random());
-
-        document.body.appendChild(corazon);
-
-        setTimeout(() => {
-            corazon.remove();
-        }, 8000);
-    }
 }
 
-// 🎆 Modificar función abrirImagen para incluir los corazones
-function abrirImagen(src) {
-    let modal = document.getElementById("modal-imagen");
+// ❤️ Dibujar corazón en el mensaje inicial
+function dibujarCorazonMensaje(canvas) {
+    canvas.width = 100;
+    canvas.height = 100;
+    const ctx = canvas.getContext("2d");
 
-    if (!modal) {
-        modal = document.createElement("div");
-        modal.id = "modal-imagen";
-        modal.innerHTML = `
-            <div class="modal-contenido">
-                <span class="cerrar">&times;</span>
-                <img class="imagen-mediana" src="${src}">
-            </div>
-        `;
-        document.body.appendChild(modal);
-    } else {
-        modal.querySelector(".imagen-mediana").src = src;
-        modal.style.display = "flex";
+    function dibujarCorazon() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(255, 0, 68, 0.8)";
+        ctx.shadowColor = "#f20044";
+        ctx.shadowBlur = 20;
+        ctx.beginPath();
+        ctx.moveTo(canvas.width / 2, canvas.height / 3);
+        ctx.bezierCurveTo(canvas.width * 0.2, 0, 0, canvas.height * 0.6, canvas.width / 2, canvas.height);
+        ctx.bezierCurveTo(canvas.width, canvas.height * 0.6, canvas.width * 0.8, 0, canvas.width / 2, canvas.height / 3);
+        ctx.fill();
     }
-
-    modal.querySelector(".cerrar").addEventListener("click", () => {
-        modal.style.display = "none";
-    });
-
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.style.display = "none";
-    });
-
-    mostrarCorazones();
+    setInterval(dibujarCorazon, 500);
 }

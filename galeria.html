@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Recuerdos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1 class="animate__animated animate__fadeIn">Nuestra Galería de Recuerdos 📸❤️</h1>
+
+    <!-- Mensaje antes de la galería con efecto corazón -->
+    <div id="mensaje-inicial" class="mensaje">
+        <div class="heart"></div>
+        <h2 class="animate__animated animate__fadeIn">TE QUIERO Y GRACIAS POR TODO ❤️ FELICES 6 MESES 🎉</h2>
+    </div>
+
+    <div id="galeria" class="oculto"></div>
+
+    <!-- 🎶 Reproductor de música -->
+    <audio id="musica" loop autoplay>
+        <source src="cancion/3AM - Por Ti (Video Oficial) - 3AM.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+<!-- Modal para mostrar imágenes en grande -->
+<div id="modal-imagen" class="modal" style="display: none;">
+    <div class="modal-contenido">
+        <span class="cerrar">&times;</span>
+        <img class="imagen-mediana" src="">
+    </div>
+</div>
+</body>
+</html>
