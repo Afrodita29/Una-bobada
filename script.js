@@ -139,3 +139,24 @@ function dibujarCorazonMensaje(canvas) {
     }
     setInterval(dibujarCorazon, 500);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("✅ Documento cargado correctamente");
+
+    let btnSi = document.getElementById("btn-si");
+    let btnNo = document.getElementById("btn-no");
+
+    if (btnSi && btnNo) {
+        console.log("✅ Botones encontrados");
+
+        btnSi.addEventListener("click", function() {
+            alert("¡Sabía que dirías que sí! 💖");
+        });
+
+        btnNo.addEventListener("click", function() {
+            alert("No es una opción 😏");
+        });
+    } else {
+        console.log("❌ No se encontraron los botones");
+    }
+});
