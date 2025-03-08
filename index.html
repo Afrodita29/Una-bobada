@@ -5,17 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Quieres ser el amor de mi vida?</title>
     <link rel="stylesheet" href="style.css">
-<script src="./script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="./script.js" defer></script>
 </head>
 <body>
-
-    <!-- Pantalla de inicio -->
-    <div id="pantalla-inicio">
-        <h1 class="animate__animated animate__bounce">¿Quieres ser el amor de mi vida?</h1>
-        <button id="btn-si" class="boton">Sí</button>
-        <button id="btn-no" class="boton">No</button>
+    <!-- Contenedor para la lluvia de corazones -->
+    <div class="hearts-container"></div>
+    
+    <div id="pantalla-inicio" class="animate__animated animate__fadeIn">
+        <div class="love-container">
+            <h1>¿Quieres ser el amor de mi vida? ❤️</h1>
+            <div class="heart-decoration"></div>
+            <div class="botones-container">
+                <button id="btn-si" class="boton shine-effect">¡Sí, quiero! 💝</button>
+                <button id="btn-no" class="boton pulse-effect">No estoy segura 🤔</button>
+            </div>
+        </div>
     </div>
-
-<script src="./script.js" defer></script>
+    <!-- Música de fondo -->
+    <audio id="musica-fondo" loop autoplay>
+        <source src="cancion/romantica.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
 </body>
 </html>

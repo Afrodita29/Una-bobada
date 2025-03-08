@@ -7,28 +7,40 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
-<body>
-    <h1 class="animate__animated animate__fadeIn">Nuestra Galería de Recuerdos 📸❤️</h1>
+<body class="gallery-page">
+    <!-- Contenedor para la lluvia de corazones -->
+    <div class="hearts-container"></div>
+    
+    <div class="gallery-container">
+        <h1 class="gallery-title animate__animated animate__fadeIn">Nuestra Galería de Recuerdos 📸❤️</h1>
 
-    <!-- Mensaje antes de la galería con efecto corazón -->
-    <div id="mensaje-inicial" class="mensaje">
-        <div class="heart"></div>
-        <h2 class="animate__animated animate__fadeIn">TE QUIERO Y GRACIAS POR TODO ❤️ FELICES 6 MESES 🎉</h2>
+        <!-- Mensaje inicial mejorado con efecto moderno -->
+        <div id="mensaje-inicial" class="mensaje-galeria modern-message">
+            <div class="message-background"></div>
+            <div class="message-content">
+                <div class="animated-heart"></div>
+                <h2 class="message-text">TE QUIERO Y GRACIAS POR TODO ❤️</h2>
+                <div class="celebration-text">FELICES 6 MESES 🎉</div>
+                <div class="sparkles"></div>
+            </div>
+        </div>
+
+        <div id="galeria" class="oculto"></div>
     </div>
-
-    <div id="galeria" class="oculto"></div>
 
     <!-- 🎶 Reproductor de música -->
     <audio id="musica" loop autoplay>
         <source src="cancion/3AM - Por Ti (Video Oficial) - 3AM.mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.
     </audio>
-<!-- Modal para mostrar imágenes en grande -->
-<div id="modal-imagen" class="modal" style="display: none;">
-    <div class="modal-contenido">
-        <span class="cerrar">&times;</span>
-        <img class="imagen-mediana" src="">
+    
+    <!-- Modal para mostrar imágenes en grande -->
+    <div id="modal-imagen" class="modal" style="display: none;">
+        <div class="modal-contenido">
+            <span class="cerrar">&times;</span>
+            <img class="imagen-mediana" src="">
+            <div class="modal-caption">Nuestros momentos juntos ❤️</div>
+        </div>
     </div>
-</div>
 </body>
 </html>
