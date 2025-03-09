@@ -214,7 +214,7 @@ function crearFondoCorazones() {
 function crearCorazonFlotante(contenedor) {
     const corazon = document.createElement('div');
     corazon.className = 'corazon';
-    corazon.innerHTML = '❤️';
+    corazon.innerHTML = '🥰❤️🥰';
     corazon.style.left = Math.random() * 100 + 'vw';
     corazon.style.animationDuration = (Math.random() * 6 + 3) + 's';
     corazon.style.fontSize = (Math.random() * 1.5 + 0.5) + 'rem';
@@ -293,6 +293,43 @@ sessionStorage.clear();
 // Función para crear la lluvia de corazones
 function crearLluviaCorazones() {
     const heartsContainer = document.querySelector('.hearts-container');
+    
+    // Crear corazones periódicamente
+    setInterval(() => {
+        // Crear un nuevo corazón
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        
+        // Posición horizontal aleatoria
+        const startPositionX = Math.random() * 100;
+        heart.style.left = startPositionX + 'vw';
+        
+        // Tamaño aleatorio
+        const size = Math.random() * 20 + 10;
+        heart.style.width = size + 'px';
+        heart.style.height = size + 'px';
+        
+        // Velocidad aleatoria
+        const duration = Math.random() * 4 + 3;
+        heart.style.animationDuration = duration + 's';
+        
+        // Color aleatorio
+        const hue = Math.random() * 60 + 330; // Tonos de rojo a rosa
+        heart.style.backgroundColor = `hsl(${hue}, 100%, 65%)`;
+        
+        // Añadir al contenedor
+        heartsContainer.appendChild(heart);
+        
+        // Eliminar después de la animación
+        setTimeout(() => {
+            heart.remove();
+        }, duration * 1000);
+    }, 300); // Crear un corazón cada 300ms
+}
+
+// Iniciar la lluvia de corazones cuando se carga la página
+document.addEventListener('DOMContentLoaded', () => {
+    crearLluviaCorazones();
     if (!heartsContainer) return;
     // 📸 Cargar imágenes en la galería con estilo romántico
     function cargarGaleria() {
@@ -374,6 +411,5 @@ document.addEventListener('DOMContentLoaded', function() {
         crearLluviaCorazones();
         cargarGaleria();
     }
-});
-}
-    
+    });
+}); // Close both DOMContentLoaded event listeners

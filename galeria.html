@@ -5,22 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería de Recuerdos</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="neon-heart.css">
     <script src="script.js" defer></script>
+    <script src="neon-heart.js" defer></script>
 </head>
 <body class="gallery-page">
+    <!-- Canvas para el corazón de neón -->
+    <canvas id="heart-canvas"></canvas>
+    
     <!-- Contenedor para la lluvia de corazones -->
     <div class="hearts-container"></div>
     
     <div class="gallery-container">
-        <h1 class="gallery-title animate__animated animate__fadeIn">Nuestra Galería de Recuerdos 📸❤️</h1>
+        <h1 class="gallery-title animate__animated animate__fadeIn">Nuestros 6 Meses Juntos 💑✨</h1>
 
-        <!-- Mensaje inicial mejorado con efecto moderno -->
         <div id="mensaje-inicial" class="mensaje-galeria modern-message">
             <div class="message-background"></div>
             <div class="message-content">
-                <div class="animated-heart"></div>
-                <h2 class="message-text">TE QUIERO Y GRACIAS POR TODO ❤️</h2>
-                <div class="celebration-text">FELICES 6 MESES 🎉</div>
+                <!-- Eliminamos el corazón anterior ya que ahora tenemos el efecto WebGL -->
+                <h2 class="message-text">Cada momento contigo es especial ❤️</h2>
+                <div class="celebration-text">¡Felices 6 Meses Mi Amor! 🎉</div>
                 <div class="sparkles"></div>
             </div>
         </div>

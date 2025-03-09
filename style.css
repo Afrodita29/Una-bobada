@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #4e4848;
-    --secondary-color: #651fd6;
+    --primary-color: #000000;
+    --secondary-color: #27075a;
     --text-color: #fff;
     --background-gradient: linear-gradient(45deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     --font-family: 'Poppins', sans-serif;
@@ -43,27 +43,45 @@ h1, h2 {
     margin: 0 auto;
 }
 
+.gallery-title {
+    font-size: 3.5em;
+    background: linear-gradient(45deg, #ff6b6b, #ffdd59, #ff8e8e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+    animation: titleFloat 3s ease-in-out infinite;
+}
+
+@keyframes titleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Update the image container styles */
 .imagen-con-efecto {
     position: relative;
     aspect-ratio: 1;
-    animation: fadeInUp 0.6s ease forwards;
+    animation: fadeInUp 0.8s ease forwards;
     opacity: 0;
     transform-style: preserve-3d;
     perspective: 1000px;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
 }
 
 .marco-romantico {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: rotateY(0deg);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .marco-romantico::before {
@@ -206,34 +224,71 @@ h1, h2 {
 
 .animated-heart {
     position: relative;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     margin: 0 auto 20px;
-    background: linear-gradient(45deg, #ff4081, #ff6b6b);
-    transform: rotate(45deg);
-    animation: heart-beat 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    background: linear-gradient(135deg, #ff3b6d, #ff6381, #ff9595);
+    transform: rotate(-45deg);
+    animation: modern-heart-beat 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    border-radius: 12px;
+    box-shadow: 
+        0 8px 25px rgba(255, 65, 130, 0.4),
+        0 0 30px rgba(255, 100, 175, 0.3);
+    filter: drop-shadow(0 0 15px rgba(255, 85, 165, 0.6));
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .animated-heart::before,
 .animated-heart::after {
     content: '';
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background: inherit;
     border-radius: 50%;
+    box-shadow: inherit;
+    transform-style: preserve-3d;
 }
 
 .animated-heart::before {
-    top: -30px;
+    top: -40px;
     left: 0;
+    transform: rotate(45deg) translateZ(10px);
 }
 
 .animated-heart::after {
     top: 0;
-    left: -30px;
+    left: -40px;
+    transform: rotate(-45deg) translateZ(10px);
 }
 
+@keyframes modern-heart-beat {
+    0% { 
+        transform: rotate(-45deg) scale(0.95);
+        filter: drop-shadow(0 0 10px rgba(255, 85, 165, 0.8));
+    }
+    15% { 
+        transform: rotate(-50deg) scale(1.25);
+        filter: drop-shadow(0 0 25px rgba(255, 85, 165, 1));
+    }
+    30% { 
+        transform: rotate(-45deg) scale(1.1);
+        filter: drop-shadow(0 0 20px rgba(255, 85, 165, 0.9));
+    }
+    45% { 
+        transform: rotate(-40deg) scale(1.3);
+        filter: drop-shadow(0 0 30px rgba(255, 85, 165, 1.2));
+    }
+    60% { 
+        transform: rotate(-45deg) scale(1.15);
+        filter: drop-shadow(0 0 25px rgba(255, 85, 165, 1));
+    }
+    100% { 
+        transform: rotate(-45deg) scale(0.95);
+        filter: drop-shadow(0 0 10px rgba(255, 85, 165, 0.8));
+    }
+}
 .sparkles {
     position: absolute;
     top: 0;
@@ -503,7 +558,7 @@ h1, h2 {
         padding: 12px 25px;
     }
 }
-/* Raining Hearts Effect */
+/* Estilos para la lluvia de corazones */
 .hearts-container {
     position: fixed;
     top: 0;
@@ -515,42 +570,43 @@ h1, h2 {
     pointer-events: none;
 }
 
-.heart-rain {
+.heart {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: rgba(255, 105, 180, 0.8);
+    top: -50px;
     transform: rotate(45deg);
-    animation: heartFall linear infinite;
+    animation: heartFall linear forwards;
 }
 
-.heart-rain::before,
-.heart-rain::after {
+.heart::before,
+.heart::after {
     content: '';
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: inherit;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
+    background-color: inherit;
 }
 
-.heart-rain::before {
-    top: -10px;
+.heart::before {
+    top: -50%;
     left: 0;
 }
 
-.heart-rain::after {
+.heart::after {
     top: 0;
-    left: -10px;
+    left: -50%;
 }
 
 @keyframes heartFall {
     0% {
-        transform: translateY(-10vh) rotate(45deg) scale(0.3);
+        transform: translateY(0) rotate(45deg) scale(1);
         opacity: 1;
     }
+    70% {
+        opacity: 0.7;
+    }
     100% {
-        transform: translateY(100vh) rotate(45deg) scale(0.6);
+        transform: translateY(100vh) rotate(45deg) scale(0.5);
         opacity: 0;
     }
 }
