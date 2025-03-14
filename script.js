@@ -5,8 +5,8 @@ window.onload = function() {
     } else {
         mostrarPantallaInicio();
         configurarBotones();
-        // Add this line to handle music on index page
-        configurarMusica();
+        // Add this line to play music on index page
+        reproducirMusicaIndex();
     }
 
     // Agregar evento de clic para el botón de confirmación
@@ -19,16 +19,36 @@ window.onload = function() {
     }
 };
 
-// Add this new function to handle music on index page
-function configurarMusica() {
+// Nueva función para reproducir música en la página de inicio
+function reproducirMusicaIndex() {
     const audio = document.getElementById('musica-fondo');
     if (audio) {
-        // Add click event to the document to start playing music
-        document.addEventListener('click', function() {
-            audio.play().catch(error => {
-                console.log("Error playing audio:", error);
+        console.log("🎵 Intentando reproducir música de fondo");
+        
+        // Intentar reproducir al cargar
+        audio.play().catch(error => {
+            console.log("⚠️ Error al reproducir automáticamente:", error);
+            
+            // Si falla, reproducir después de la interacción del usuario
+            document.addEventListener('click', function() {
+                audio.play().catch(e => console.log("Error al reproducir después del clic:", e));
+            }, { once: true });
+        });
+        
+        // También intentar reproducir cuando el usuario haga clic en los botones
+        const btnSi = document.getElementById('btn-si');
+        if (btnSi) {
+            btnSi.addEventListener('click', function() {
+                audio.play().catch(e => console.log("Error al reproducir con botón Sí:", e));
             });
-        }, { once: true });
+        }
+        
+        const btnNo = document.getElementById('btn-no');
+        if (btnNo) {
+            btnNo.addEventListener('click', function() {
+                audio.play().catch(e => console.log("Error al reproducir con botón No:", e));
+            });
+        }
     }
 }
 
