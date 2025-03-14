@@ -5,7 +5,7 @@ window.onload = function() {
     } else {
         mostrarPantallaInicio();
         configurarBotones();
-        // Add this line to play music on index page
+        // Intentar reproducir música al cargar la página
         reproducirMusicaIndex();
     }
 
@@ -19,34 +19,23 @@ window.onload = function() {
     }
 };
 
-// Nueva función para reproducir música en la página de inicio
+// Función para reproducir música en la página de inicio
 function reproducirMusicaIndex() {
     const audio = document.getElementById('musica-fondo');
     if (audio) {
         console.log("🎵 Intentando reproducir música de fondo");
         
         // Intentar reproducir al cargar
-        audio.play().catch(error => {
-            console.log("⚠️ Error al reproducir automáticamente:", error);
-            
-            // Si falla, reproducir después de la interacción del usuario
-            document.addEventListener('click', function() {
-                audio.play().catch(e => console.log("Error al reproducir después del clic:", e));
-            }, { once: true });
-        });
+        const playPromise = audio.play();
         
-        // También intentar reproducir cuando el usuario haga clic en los botones
-        const btnSi = document.getElementById('btn-si');
-        if (btnSi) {
-            btnSi.addEventListener('click', function() {
-                audio.play().catch(e => console.log("Error al reproducir con botón Sí:", e));
-            });
-        }
-        
-        const btnNo = document.getElementById('btn-no');
-        if (btnNo) {
-            btnNo.addEventListener('click', function() {
-                audio.play().catch(e => console.log("Error al reproducir con botón No:", e));
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("⚠️ Error al reproducir automáticamente:", error);
+                
+                // Si falla, configurar para reproducir con la primera interacción
+                document.addEventListener('click', function() {
+                    audio.play().catch(e => console.log("Error al reproducir después del clic:", e));
+                }, { once: true });
             });
         }
     }
@@ -56,10 +45,17 @@ function reproducirMusicaIndex() {
 function configurarBotones() {
     const btnSi = document.getElementById('btn-si');
     const btnNo = document.getElementById('btn-no');
+    const audio = document.getElementById('musica-fondo');
     
     if (btnSi) {
         btnSi.addEventListener('click', function() {
             console.log("✅ Clic en el botón Sí");
+            
+            // Intentar reproducir música si no está reproduciendo
+            if (audio && audio.paused) {
+                audio.play().catch(e => console.log("Error al reproducir con botón Sí:", e));
+            }
+            
             mostrarMensajeRomantico();
             
             // Redirigir a la galería después de mostrar el mensaje
@@ -70,6 +66,13 @@ function configurarBotones() {
     }
     
     if (btnNo) {
+        btnNo.addEventListener('click', function() {
+            // Intentar reproducir música si no está reproduciendo
+            if (audio && audio.paused) {
+                audio.play().catch(e => console.log("Error al reproducir con botón No:", e));
+            }
+        });
+        
         agregarEfectoBotonNo(btnNo);
     }
 }
