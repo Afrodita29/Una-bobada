@@ -5,6 +5,8 @@ window.onload = function() {
     } else {
         mostrarPantallaInicio();
         configurarBotones();
+        // Add this line to handle music on index page
+        configurarMusica();
     }
 
     // Agregar evento de clic para el botón de confirmación
@@ -16,6 +18,19 @@ window.onload = function() {
         });
     }
 };
+
+// Add this new function to handle music on index page
+function configurarMusica() {
+    const audio = document.getElementById('musica-fondo');
+    if (audio) {
+        // Add click event to the document to start playing music
+        document.addEventListener('click', function() {
+            audio.play().catch(error => {
+                console.log("Error playing audio:", error);
+            });
+        }, { once: true });
+    }
+}
 
 // Configurar los botones de la pantalla inicial
 function configurarBotones() {
@@ -75,38 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function iniciarMusica() {
     const audio = document.getElementById('musica');
     if (audio) {
-        // Intentar reproducir y manejar errores
-        const playPromise = audio.play();
-        
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                console.log("✅ Música iniciada correctamente");
-            }).catch(error => {
-                console.log("⚠ Error al iniciar música:", error);
-                // Mostrar mensaje al usuario si es necesario
-                mostrarMensajeMusica();
-            });
-        }
+        audio.play();
     }
-}
-
-// Función para mostrar mensaje sobre la música
-function mostrarMensajeMusica() {
-    const mensaje = document.createElement('div');
-    mensaje.className = 'mensaje-musica';
-    mensaje.innerHTML = `
-        <div class="mensaje-contenido">
-            <p>Haz clic en cualquier parte de la página para iniciar la música 🎵</p>
-        </div>
-    `;
-    document.body.appendChild(mensaje);
-    
-    // Permitir al usuario iniciar la música con un clic
-    document.addEventListener('click', function iniciarConClic() {
-        iniciarMusica();
-        mensaje.remove();
-        document.removeEventListener('click', iniciarConClic);
-    });
 }
 // 📸 Cargar imágenes en la galería con el efecto corazón
 function cargarGaleria() {
