@@ -75,8 +75,38 @@ document.addEventListener("DOMContentLoaded", function() {
 function iniciarMusica() {
     const audio = document.getElementById('musica');
     if (audio) {
-        audio.play();
+        // Intentar reproducir y manejar errores
+        const playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                console.log("✅ Música iniciada correctamente");
+            }).catch(error => {
+                console.log("⚠ Error al iniciar música:", error);
+                // Mostrar mensaje al usuario si es necesario
+                mostrarMensajeMusica();
+            });
+        }
     }
+}
+
+// Función para mostrar mensaje sobre la música
+function mostrarMensajeMusica() {
+    const mensaje = document.createElement('div');
+    mensaje.className = 'mensaje-musica';
+    mensaje.innerHTML = `
+        <div class="mensaje-contenido">
+            <p>Haz clic en cualquier parte de la página para iniciar la música 🎵</p>
+        </div>
+    `;
+    document.body.appendChild(mensaje);
+    
+    // Permitir al usuario iniciar la música con un clic
+    document.addEventListener('click', function iniciarConClic() {
+        iniciarMusica();
+        mensaje.remove();
+        document.removeEventListener('click', iniciarConClic);
+    });
 }
 // 📸 Cargar imágenes en la galería con el efecto corazón
 function cargarGaleria() {
